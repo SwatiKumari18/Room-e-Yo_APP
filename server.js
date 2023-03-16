@@ -30,6 +30,10 @@ app.set('view engine', '.hbs');
 //setting up body parser
 app.use(express.urlencoded({ extended: false }));
 
+//setting up dotenv
+const dotenv = require("dotenv");
+dotenv.config({ path: "./config/keys.env" });
+
 // Add your routes here
 // e.g. app.get() { ... }
 app.get("/", (req, res) => {
