@@ -1,0 +1,23 @@
+{
+  "name": "a3",
+  "version": "1.0.0",
+  "description": "Rental website - Room-e-yo : The Comfort of Your Room",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Rental Website",
+    "Handlebars",
+    "Responsive",
+    "Processing Forms"
+  ],
+  "author": "Swati Kumari",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.7"
+  }
+}

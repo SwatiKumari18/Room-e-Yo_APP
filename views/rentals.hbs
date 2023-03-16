@@ -1,0 +1,15 @@
+<section id="rentals">
+
+    {{#each allRentals}}
+
+        <h1>{{cityProvince}}</h1>
+
+        <div id="eachRentals">
+            {{#each rentals}}
+                {{>rental this}}
+            {{/each}}
+        </div>
+        
+    {{/each}}
+
+</section>

@@ -1,0 +1,59 @@
+<section class="hero">
+
+            <p>
+                Want that extra comfort for your next vaction?
+                <br>
+                Think no more!
+                <br>
+                Room-e-Yoo has got you
+            </p>
+            <br>
+
+</section>
+
+<section class="services">
+    <div class="service-1">
+         <div class="image">
+            <img src="\images\money.jpg" alt="budget-friendly logo">
+            </div>
+        <div class="service-heading">
+             BUDGET FRIENDLY
+        </div>
+        <div class="service-desc">
+            More comfort available at less price
+        </div>
+    </div>
+    <div class="service-2">
+        <div class="image">
+            <img src="\images\spa.png" alt="onsite-spa logo">
+        </div>
+        <div class="service-heading">
+            ONSITE SPA
+        </div>
+        <div class="service-desc">
+            No more stress
+        </div>
+    </div>
+    <div class="service-3">
+        <div class="image">
+            <img src="\images\food.jpg" alt="complimentary-breakfast logo">
+        </div>
+        <div class="service-heading">
+            COMPLIMENTARY BREAKFAST
+        </div>
+        <div class="service-desc">
+            Healthy and Tasty morning start
+        </div>
+    </div>
+</section>
+
+<h1 id="featured-items-header">Featured Rentals</h1>
+
+
+<section class="featured-rentals">
+
+    {{#each featuredRentals}}
+        {{>rental this}}
+    {{/each}}
+
+</section>
