@@ -1,12 +1,15 @@
-<form id="sign-up">
+<form id="sign-up" method="POST" url="/sign-up">
     <h1>Sign Up</h1>
 
     <p>Create your account by entering your email address and choosing a password</p>
 
-    <input type="text" id="fname" placeholder="First Name">
-    <input type="text" id="lname" placeholder="Last Name">
-    <input type="text" id="email" placeholder="Email Address">
-    <input type="text" id="pswd" placeholder="Password">
+    <input type="text" id="fname" placeholder="First Name" name="fname">
+
+    <input type="text" id="lname" placeholder="Last Name" name="lname">
+
+    <input type="text" id="email" placeholder="Email Address" name="email">
+
+    <input type="text" id="pswd" placeholder="Password" name="pswd">
 
     <button>Sign up Today</button>
 </form>
