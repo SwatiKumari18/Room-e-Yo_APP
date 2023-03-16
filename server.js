@@ -126,10 +126,15 @@ app.post("/sign-up", (req, res) => {
     }
     
 
-    if (pswd.trim().length === 0 || !(pswd.match(validPswdRegex)))
+    if (pswd.trim().length === 0)
     {
         validationSuccessful = false;
         validationMsg.pswd = "Please enter your password";
+    }
+    else if (!(pswd.match(validPswdRegex)))
+    {
+        validationSuccessful = false;
+        validationMsg.pswd = "Password should have 8 to 12 characters,at least one lowercase letter, uppercase letter, number and a symbol";
     }
     
     if(validationSuccessful)
