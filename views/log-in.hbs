@@ -3,7 +3,7 @@
     <h1>Welcome back</h1>
 
     {{!-- <lable for="email"></lable> --}}
-    <input type="text" id="email" placeholder="Email Address" name="email" value="{{data.email}}" />
+    <input type="email" id="email" placeholder="Email Address" name="email" value="{{data.email}}" />
     {{#if msg.email}}
         <span style="color: red">{{msg.email}}</span>
     {{/if}}
