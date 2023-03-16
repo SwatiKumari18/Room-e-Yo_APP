@@ -3,13 +3,25 @@
 
     <p>Create your account by entering your email address and choosing a password</p>
 
-    <input type="text" id="fname" placeholder="First Name" name="fname">
+    <input type="text" id="fname" placeholder="First Name" name="fname" value="{{data.fname}}">
+    {{#if msg.fname}}
+        <span style="color: red">{{msg.fname}}</span>
+    {{/if}}
 
-    <input type="text" id="lname" placeholder="Last Name" name="lname">
+    <input type="text" id="lname" placeholder="Last Name" name="lname" value="{{data.lname}}">
+    {{#if msg.lname}}
+        <span style="color: red">{{msg.lname}}</span>
+    {{/if}}
 
-    <input type="text" id="email" placeholder="Email Address" name="email">
+    <input type="text" id="email" placeholder="Email Address" name="email" value="{{data.email}}">
+    {{#if msg.email}}
+        <span style="color: red">{{msg.email}}</span>
+    {{/if}}
 
-    <input type="text" id="pswd" placeholder="Password" name="pswd">
+    <input type="text" id="pswd" placeholder="Password" name="pswd" value="{{data.pswd}}">
+    {{#if msg.pswd}}
+        <span style="color: red">{{msg.pswd}}</span>
+    {{/if}}
 
     <button>Sign up Today</button>
 </form>
