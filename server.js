@@ -27,10 +27,12 @@ app.engine('.hbs', exphbs.engine({
 }));
 app.set('view engine', '.hbs');
 
+//setting up body parser
+app.use(express.urlencoded({ extended: false }));
+
 // Add your routes here
 // e.g. app.get() { ... }
 app.get("/", (req, res) => {
-    //res.sendFile(path.join(__dirname, "/views/index.html"));
 
     res.render('home',
     {
@@ -52,6 +54,126 @@ app.get("/sign-up", (req, res) => {
 
 app.get("/log-in", (req, res) => {
     res.render("log-in");
+});
+
+app.post("/log-in", (req,res)=>
+{
+    const {email, pswd} = req.body;
+    let validationSuccessful = true;
+    let validationMsg = {};
+
+    if (email.trim().length === 0)
+    {
+        validationSuccessful = false;
+        validationMsg.email = "Please enter a valid email address";
+    }
+
+    if (pswd.trim().length === 0)
+    {
+        validationSuccessful = false;
+        validationMsg.pswd = "Please enter your password";
+    }
+
+    if(validationSuccessful)
+    {
+        res.render('home',
+        {
+            featuredRentals: rentals.getFeaturedRentals()
+        });
+    }
+    else
+    {
+        res.render("log-in",
+        {
+            msg: validationMsg,
+            data: req.body
+        });
+
+    }
+
+});
+
+app.post("/sign-up", (req, res) => {
+    
+    const {fname, lname, email, pswd} = req.body;
+
+    let validationSuccessful = true;
+    let validationMsg = {};
+    let validEmailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    let validPswdRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,12}$/;
+
+
+    if(typeof fname !== "string" || fname.trim().length === 0)
+    {
+        validationSuccessful = false;
+        validationMsg.fname = "A valid first name is required";
+    }
+
+    if(typeof lname !== "string" || lname.trim().length ===0)
+    {
+        validationSuccessful = false;
+        validationMsg.lname = "A valid lirst name is required";
+    }
+
+    if (email.trim().length === 0 || !(email.match(validEmailRegex)))
+    {
+        validationSuccessful = false;
+        validationMsg.email = "Please enter a valid email address";
+    }
+    
+
+    if (pswd.trim().length === 0 || !(pswd.match(validPswdRegex)))
+    {
+        validationSuccessful = false;
+        validationMsg.pswd = "Please enter your password";
+    }
+    
+    if(validationSuccessful)
+    {
+        const sgMail = require("@sendgrid/mail");
+        sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+
+        const msg = {
+            to: email,
+            from: "swatikumari90151@gmail.com",
+            subject: "Welcome to Room-e-Yo",
+            html: `Welcome to the club ${fname}! <br> 
+            Get ready to emark upon the journey filled with vacations and conforts!
+            <br><br>
+            Room-e-Yo Owner,<br>
+            Swati Kumari`
+        };
+
+        sgMail.send(msg)
+        .then(() => {
+            res.render('welcome',
+            {
+                title: "Welcome!",
+                data: req.body
+            });
+        })
+        .catch(err =>{
+
+            console.log(err);
+
+            res.render("sign-up",
+            {
+                msg: validationMsg,
+                data: req.body
+            });
+
+        });
+    }
+    else
+    {
+        res.render("sign-up",
+        {
+            msg: validationMsg,
+            data: req.body
+        });
+
+    }
+
 });
 
 
