@@ -2,9 +2,18 @@
 
     <h1>Welcome back</h1>
 
-    <input type="text" id="email" placeholder="Email Address" name="email" />
+    {{!-- <lable for="email"></lable> --}}
+    <input type="text" id="email" placeholder="Email Address" name="email" value="{{data.email}}" />
+    {{#if msg.email}}
+        <span style="color: red">{{msg.email}}</span>
+    {{/if}}
+
      
-    <input type="text" id="pswd" placeholder="Password" name="pswd" />
+    {{!-- <lable for="pswd"></lable> --}}
+    <input type="text" id="pswd" placeholder="Password" name="pswd" value="{{data.pswd}}"/>
+    {{#if msg.pswd}}
+        <span style="color: red">{{msg.pswd}}</span>
+    {{/if}}
 
     <button>Login</button>
 
