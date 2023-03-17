@@ -116,7 +116,7 @@ app.post("/sign-up", (req, res) => {
     if(typeof lname !== "string" || lname.trim().length ===0)
     {
         validationSuccessful = false;
-        validationMsg.lname = "A valid lirst name is required";
+        validationMsg.lname = "A valid last name is required";
     }
 
     if (email.trim().length === 0 || !(email.match(validEmailRegex)))
