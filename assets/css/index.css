@@ -314,6 +314,18 @@ form button:hover{
     margin: 2rem;
 }
 
+#type{
+
+  font-family: system-ui;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.1;
+  display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.1em;
+
+ }
+
 /* welcome */
 #welcome-msg p{
     
