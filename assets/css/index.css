@@ -241,7 +241,7 @@ footer{
 }
 
 
-/* Sign-up for */
+/* Sign-up form */
 
 form
 { 
@@ -260,7 +260,7 @@ form p{
     font-weight: bold;
 }
 
-#sign-up,#log-in{
+#sign-up,#log-in,#addRental,#editRental,#removeRental,#loadData{
     max-width: 500px;
     margin: 2rem auto;
     border: 2px solid blue;
@@ -314,7 +314,7 @@ form button:hover{
     margin: 2rem;
 }
 
-#type{
+#type,#featured{
 
   font-family: system-ui;
   font-size: 1rem;
