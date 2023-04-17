@@ -1,3 +1,49 @@
+const mongoose = require("mongoose");
+
+const rentalSchema = new mongoose.Schema({
+
+    "headline" : {
+        "type" : String,
+        "require" : true
+    },
+    "numSleeps" : {
+        "type" : Number,
+        "require" : true
+    },
+    "numBedrooms" : {
+        "type" : Number,
+        "require" : true
+    },
+    "numBathrooms" : {
+        "type" : Number,
+        "require" : true
+    },
+    "pricePerNight" : {
+        "type" : Number,
+        "require" : true
+    },
+    "city" : {
+        "type" : String,
+        "require" : true 
+    },
+    "province" : {
+        "type" : String,
+        "require" : true
+    },
+    "imageUrl" : {
+        "type" : String,
+        "require" : true
+    },
+    "featuredRental" : {
+        "type" : Boolean,
+        "require" : true
+    }
+});
+
+//Creating model named - 'rentals'
+module.exports.rentalModel = mongoose.model("rentals", rentalSchema);
+
+//Rentals database
 const rentals = [
     {
         headline: "St. Claire-Yonge",
@@ -88,6 +134,21 @@ const rentals = [
         featuredRental: false
     }
 ];
+
+
+
+//Returns all the rentals
+module.exports.getAllRentals= function()
+{
+    let allRentals = [];
+
+    for(let i = 0; i < rentals.length; i++)
+    {
+        allRentals.push(rentals[i]);
+    }
+
+    return allRentals;
+};
 
 //Returns all the rentals to be featured on the Home page
 module.exports.getFeaturedRentals= function()
