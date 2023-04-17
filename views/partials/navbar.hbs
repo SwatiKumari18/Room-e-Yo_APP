@@ -11,9 +11,9 @@
             <li><a href="/rentals">RENTALS</a></li>
             {{#if user}}
                 {{#if isClerk}}
-                    <li><a href="/rentals/list">{{user.fname}}</a></li>
+                    <li><a href="/rentals/list" style="text-transform: uppercase;">{{user.fname}}</a></li>
                 {{else}}
-                    <li><a href="/cart">{{user.fname}}</a></li>
+                    <li><a href="/cart" style="text-transform: uppercase;">{{user.fname}}</a></li>
                 {{/if}}
                 <li><a href="/logout">LOGOUT</a></li>
             {{else}}
