@@ -1,0 +1,23 @@
+{{#each data}}
+
+    <form id="removeRental" method="POST" action="/rentals/remove/{{_id}}" encType="multipart/form-data">
+
+        <h1>Remove Rental</h1>
+
+        <p>Are you sure you want to delete this rental?</p>
+
+        <div id="type">
+            <input type="radio" id="Yes" name="delete" value="true" />
+            <label for="Yes">Yes</label>
+        </div>
+
+        <div id="type">
+            <input type="radio" id="No" name="delete" value="false" checked/>
+            <label for="cust">No</label>
+        </div>            
+
+        <button>Confirm</button>
+
+    </form>
+
+{{/each}}
