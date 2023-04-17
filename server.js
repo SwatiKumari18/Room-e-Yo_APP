@@ -15,6 +15,7 @@ const exphbs = require("express-handlebars");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const session = require("express-session");
+const fileUpload = require("express-fileupload");
 
 // Set up dotenv to protect environment variables.
 dotenv.config({ path: "./config/keys.env" });
@@ -48,15 +49,21 @@ app.use(session({
 app.use((req,res,next) => {
     res.locals.user = req.session.user;
     res.locals.isClerk = req.session.isClerk;
+    res.locals.loaded = req.session.loaded;
     next();
 });
+
+//Set up fileUpload
+app.use(fileUpload());
 
 // Controllers
 const generalControllers = require("./controllers/generalController");
 const rentalsController = require("./controllers/rentalsController");
+const loadDataController = require("./controllers/load-dataController");
 
 app.use("/", generalControllers);
 app.use("/rentals", rentalsController);
+app.use("/load-data", loadDataController);
 
 
 // *** DO NOT MODIFY THE LINES BELOW ***
