@@ -6,8 +6,9 @@
         <span style="color: red">{{msg.loginType}}</span>
     {{/if}}
 
+    
     <div id="type">
-        <input type="radio" name="loginType" value="Data Entry Clerk" />
+        <input type="radio" name="loginType" value="Data Entry Clerk"/>
         <label for="clerk">Data Entry Clerk</label>
     </div>
 
@@ -15,6 +16,7 @@
         <input type="radio" id="cust" name="loginType" value="Customer" />
         <label for="cust">Customer</label>
     </div>
+
 
     <input type="email" id="email" placeholder="Email Address" name="email" value="{{data.email}}" />
     {{#if msg.email}}
