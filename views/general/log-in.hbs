@@ -1,0 +1,32 @@
+<form id="log-in" method="POST" action="/log-in">
+
+    <h1>Welcome back</h1>
+
+    {{#if msg.loginType}}
+        <span style="color: red">{{msg.loginType}}</span>
+    {{/if}}
+
+    <div id="type">
+        <input type="radio" name="loginType" value="Data Entry Clerk" />
+        <label for="clerk">Data Entry Clerk</label>
+    </div>
+
+    <div id="type">
+        <input type="radio" id="cust" name="loginType" value="Customer" />
+        <label for="cust">Customer</label>
+    </div>
+
+    <input type="email" id="email" placeholder="Email Address" name="email" value="{{data.email}}" />
+    {{#if msg.email}}
+        <span style="color: red">{{msg.email}}</span>
+    {{/if}}
+
+     
+    <input type="password" id="pswd" placeholder="Password" name="pswd" value="{{data.pswd}}"/>
+    {{#if msg.pswd}}
+        <span style="color: red">{{msg.pswd}}</span>
+    {{/if}}
+
+    <button>Login</button>
+
+</form>
