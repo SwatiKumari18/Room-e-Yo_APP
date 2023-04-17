@@ -1,0 +1,45 @@
+<form id="addRental" method="POST" action="/rentals/add" encType="multipart/form-data">
+    <h1>Add a New Rental</h1>
+
+    <input type="text" required id="headline" name="headline" value="{{data.headline}}" placeholder="Headline" />
+
+    <input type="number" required id="numSleeps" name="numSleeps" value="{{data.numSleeps}}" placeholder="Number of People to be Accommodate" min="0" max="100" />
+
+    <input type="number" required id="numBedrooms" name="numBedrooms" value="{{data.numBedrooms}}" placeholder="Number of Bedrooms" min="0" max="100" />
+
+    <input type="number" required id="numBathrooms" name="numBathrooms" value="{{data.numBathrooms}}" placeholder="Number of Bathrooms" min="0" max="100" />
+
+    <input type="number" required id="pricePerNight" name="pricePerNight" value="{{data.pricePerNight}}" placeholder="Price Per Night" step="0.01" />
+
+    <input type="text" required id="city" placeholder="City" name="city" value="{{data.city}}">
+
+    <input type="text" id="province" required placeholder="Province" name="province" value="{{data.province}}">
+
+    <br>
+    <p>Rental Image</p>
+
+    <input type="file" id="imageUrl" required name="imageUrl" max="1" accept="image/x-png,image/gif,image/jpeg,image/jpg" >
+
+    <br>
+    <p>Featured?</p>
+
+    {{#if msg.featuredRental}}
+        <span style="color: red">{{msg.featuredRental}}</span>
+    {{/if}}
+
+    <br>
+
+    <div id="featured">
+        <input type="checkbox" name="featuredRental" value="true" />
+        <label for="isTrue">Yes</label>
+    </div>
+
+    <div id="featured">
+        <input type="checkbox" name="featuredRental" value="false" />
+        <label for="isTrue">No</label>
+    </div>
+
+    <br>
+    <button>Add New Rental</button>
+
+</form>
