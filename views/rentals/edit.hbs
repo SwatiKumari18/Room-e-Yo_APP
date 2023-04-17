@@ -1,0 +1,70 @@
+{{#each data}}
+
+    <form id="editRental" method="POST" action="/rentals/edit/{{_id}}" encType="multipart/form-data">
+        <h1>Edit Rental Details</h1>
+
+            <br>
+            <p>Headline</p>
+            <input type="text" id="headline" name="headline" value="{{headline}}" placeholder="Headline" />
+
+            <br>
+            <p>Number Of People</p>
+            <input type="number" id="numSleeps" name="numSleeps" value="{{numSleeps}}" placeholder="Number of People to be Accommodate" min="0" max="100" />
+
+            <br>
+            <p>Number Of Bedrooms</p>
+            <input type="number" id="numBedrooms" name="numBedrooms" value="{{numBedrooms}}" placeholder="Number of Bedrooms" min="0" max="100" />
+            
+            <br>
+            <p>Number Of Bathrooms</p>
+            <input type="number" id="numBathrooms" name="numBathrooms" value="{{numBathrooms}}" placeholder="Number of Bathrooms" min="0" max="100" />
+
+            <br>
+            <p>Price Per Nigth</p>
+            <input type="number" required id="pricePerNight" name="pricePerNight" value="{{pricePerNight}}" placeholder="Price Per Night" step="0.01" />
+
+            <br>
+            <p>City</p>
+            <input type="text" id="city" placeholder="City" name="city" value="{{city}}">
+
+            <br>
+            <p>Province</p>
+            <input type="text" id="province" placeholder="Province" name="province" value="{{province}}">
+            
+            <br>
+            <p>Rental Image</p>
+            <input type="file" id="imageUrl" name="imageUrl" max="1" accept="image/x-png,image/gif,image/jpeg,image/jpg" value="/images/Rentals/{{imageUrl}}">
+            
+            <br>
+
+            <p>Featured?</p>
+
+            <br>
+
+            <div id="featured">
+                {{#if featured}}
+                    <input type="checkbox" name="featuredRental" value="true" checked/>
+                    <label for="isTrue">Yes</label>
+                {{else}}
+                    <input type="checkbox" name="featuredRental" value="true"/>
+                    <label for="isTrue">Yes</label>
+                {{/if}}
+            </div>
+
+            <div id="featured">
+                {{#if featured}}
+                    <input type="checkbox" name="featuredRental" value="false" />
+                    <label for="isTrue">No</label>
+                {{else}}
+                    <input type="checkbox" name="featuredRental" value="false" checked/>
+                    <label for="isTrue">No</label>
+                {{/if}}
+            </div>
+
+            <br>
+
+            <button>Edit Rental</button>
+
+    </form>
+
+{{/each}}
