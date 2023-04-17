@@ -1,7 +1,57 @@
-<section id="welcome-msg">
-    <p>
-        Welcome to Room-e-Yo {{user.fname}}!
-        <br>
-        Get ready to add some awesome rentals!
-    </p>
-</section>
+{{#if loaded}}
+
+    <section id="rentals">
+
+        {{#each data}}
+
+            <div id="eachRentals">
+
+                {{>rental this}}
+
+                <div id="rentals">
+
+                    <br><br>
+
+                    <form id="add" method="GET" action="/rentals/add">
+
+                        <button>Add Rentals</button>
+
+                    </form>
+
+                    <br><br>
+
+                    <form id="create" method="GET" action="/rentals/edit/{{_id}}">
+
+                        <button>Edit Rental Details</button>
+
+                    </form>
+
+                    <br><br>
+
+                    <form id="delete" method="GET" action="/rentals/remove/{{_id}}">
+
+                        <button>Remove Rental</button>
+
+                    </form>
+
+                </div>
+
+            </div>
+            
+        {{/each}}
+
+    </section>
+
+{{else}}
+
+        <form id="loadData" method="GET" action="/load-data/rentals">
+
+            <p>
+                Welcome to Room-e-Yo!
+            </p>
+            <br>
+            <button>Load Data</button>
+
+        </form>
+
+{{/if}}
