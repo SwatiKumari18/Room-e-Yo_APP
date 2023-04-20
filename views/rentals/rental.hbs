@@ -6,7 +6,8 @@
 
         <div id="eachRentals">
             {{#each rentals}}
-                {{>rental this}}
+                {{!-- {{>rental this}} --}}
+                {{>rental isCustomer=../isCustomer}}
             {{/each}}
         </div>
         

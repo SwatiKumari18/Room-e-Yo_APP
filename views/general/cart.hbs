@@ -1,7 +1,48 @@
-<section id="welcome-msg">
-    <p>
-        Welcome to Room-e-Yo {{user.fname}}!
-        <br>
-        Get ready for a relaxed vacation that fits your budget!
+
+{{#if hasRentals}}  
+
+    {{#each rentals}}
+
+        {{!-- {{>rental this}} --}}
+
+        <div class="rental">
+            <img class="rental-image" src="/images/Rentals/{{rental.imageUrl}}" alt="{{rental.headline}} rental picture"/>
+            <h2 class="rental-name">{{rental.headline}},{{rental.city}},{{rental.province}}
+            </h2>
+            <p class="rental-desc">
+                SLEEPS {{rental.numSleeps}} {{rental.numBedrooms}}BD {{rental.numBathrooms}}BA ${{rental.pricePerNight}}/night
+            </p>
+            <p class="rental-desc">
+                NIGHTS RESERVED {{qty}}
+            </p>
+            <form id="create" method="GET" action="/cart/{{rental.id}}">
+
+                <button>ADD NIGHTS</button>
+
+            </form>
+
+        </div>
+
+    {{/each}}
+
+    <p class="total">
+        TOTAL COST {{cartTotal}}
     </p>
-</section>
+
+    <br>
+
+{{else}}
+
+    <section id="welcome-msg">
+        <p>
+            Welcome to Room-e-Yo {{user.fname}}!
+            <br>
+            Your Cart is Empty!
+        </p>
+    </section>
+
+{{/if}}
+
+
+
+

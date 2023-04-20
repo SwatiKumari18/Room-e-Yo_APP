@@ -3,12 +3,77 @@ const router = express.Router();
 const rentals = require("../models/rentals-db");
 const path = require("path");
 
+
 //Routing for Rentals page
 router.get("/", (req, res) => {
+    
+    /*let cities = [];
+    let groupedRentals = [];
+
+    rentals.rentalModel.aggregate([
+        {
+            $group :
+            {
+                _id: "$city"
+            }
+        }
+    ])
+    .then(result => {
+
+        // result = result.map(value => value.toObject());
+        // for (let i =0; i < result.length; i++)
+        // {
+        //     result[i] = result[i].map(value => value.toObject());
+        // }
+
+        cities = result;
+        // console.log(result);
+        // console.log(cities[0]._id);
+        // console.log(cities[1]._id);
+
+        // console.log(result.length);
+
+        
+        for(let i = 0; i < cities.length; i++)
+        {
+            let cityProvinceAndRental =
+                { cityProvince : "", rentals: []};
+
+            cityProvinceAndRental.cityProvince = cities[i]._i
+            d;
+    
+            rentals.rentalModel.find({city: cities[i]._id})
+            .then((result) => {
+                result =  result.map(value => value.toObject());
+                // console.log("Result" +result);
+                cityProvinceAndRental.rentals = result;
+                groupedRentals.push(cityProvinceAndRental);
+            })
+            .catch(err => {
+                console.log("Error occured while finding city......" + err);
+            });
+        };
+    })
+    .then(() => {
+
+        console.log("Grouped- " + groupedRentals);
+    
+        res.render('rentals/rental',
+        {
+            // allRentals: rentals.getRentalsByCityAndProvince()
+            allRentals: groupedRentals
+        });
+    })
+    .catch(err => {
+        console.log(err);
+    });*/
+
     res.render('rentals/rental',
     {
+        // allRentals: rentals.getRentalsByCityAndProvince()
         allRentals: rentals.getRentalsByCityAndProvince()
     });
+
 });
 
 
@@ -20,7 +85,6 @@ router.get("/list", (req, res) => {
         var sortBy = { headline: 1 };
         rentals.rentalModel.find().sort(sortBy)
         .then(sortedRentals => {
-
             sortedRentals = sortedRentals.map(value => value.toObject());
 
             res.render('rentals/list', {

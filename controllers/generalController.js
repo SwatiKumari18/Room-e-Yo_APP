@@ -8,10 +8,21 @@ const bcryptjs = require("bcryptjs");
 //Routing for Home page
 router.get("/", (req, res) => {
 
-    res.render('general/home',
-    {
-        featuredRentals: rentals.getFeaturedRentals()
-    });
+    rentals.rentalModel.find({featuredRental : "true"})
+        .then(rental => {
+            rental = rental.map(value => value.toObject());
+
+            res.render('general/home',
+            {
+                featuredRentals: rental
+            });
+
+        })
+        .catch(err => {
+
+            console.log("Error occured while finding for the featured rental...." + err);
+
+        });
 
 });
 
@@ -192,11 +203,13 @@ router.post("/log-in", (req,res)=>
                         if (req.body.loginType === "Data Entry Clerk")
                         {
                             req.session.isClerk = true;
+                            req.session.isCustomer = false;
                             res.redirect('rentals/list');
                         }
                         else
                         {
                             req.session.isClerk = false;
+                            req.session.isCustomer = true;
                             res.redirect('/cart');
                         }
                     }
@@ -254,12 +267,90 @@ router.get("/welcome", (req, res) => {
 
 });
 
+
+const prepareViewModel = function (req) {
+
+    if (req.session && req.session.user && req.session.isClerk === false) 
+    {
+        let cart = req.session.cart || [];
+        let cartTotal = 0;
+        const hasRentals = cart.length > 0;
+
+        if (hasRentals) 
+        {
+            cart.forEach(cartRental => {
+                cartTotal += cartRental.rental.pricePerNight * cartRental.qty;
+            });
+        }
+
+        return {
+            hasRentals,
+            rentals: cart,
+            cartTotal: "$" + cartTotal.toFixed(2)
+        };
+    }
+
+};
+
 //Routing for Shopping cart
 router.get("/cart", (req, res) => {
 
     if (req.session.user && req.session.isClerk === false)
     {
         res.render('general/cart');
+    }
+    else{
+        res.status(401).send("You are not authorized to view this page");
+    }
+
+});
+
+
+router.get("/cart/:id", (req, res) => {
+
+    const rentalID = parseInt(req.params.id);
+
+    if (req.session.user && req.session.isClerk === false)
+    {
+        let cart = req.session.cart = req.session.cart || [];
+
+        rentals.rentalModel.find({_id : req.params.id})
+        .then(rental => {
+            rental = rental.map(value => value.toObject());
+
+
+            let found = false;
+            cart.forEach(cartRental => {
+                if (cartRental.id == rentalID) 
+                {
+                    found = true;
+                    cartRental.qty++;
+                }
+            });
+
+            if (found) 
+            {
+                console.log("The rental was already in the cart, incremented quantity by one.");
+            }
+            else{
+                cart.push({
+                    id: rentalID,
+                    qty: 1,
+                    rental: rental
+                });
+
+                console.log("Rental was added to the shopping cart");
+            }
+
+            res.render('general/cart', prepareViewModel(req));
+
+        })
+        .catch(err => {
+
+            console.log("Error occured while finding for the rental...." + err);
+
+        });
+        // res.render('general/cart');
     }
     else{
         res.status(401).send("You are not authorized to view this page");

@@ -150,21 +150,21 @@ module.exports.getAllRentals= function()
     return allRentals;
 };
 
-//Returns all the rentals to be featured on the Home page
-module.exports.getFeaturedRentals= function()
-{
-    let featuredRentals = [];
+// //Returns all the rentals to be featured on the Home page
+// module.exports.getFeaturedRentals= function()
+// {
+//     let featuredRentals = [];
 
-    for(let i = 0; i < rentals.length; i++)
-    {
-        if (rentals[i].featuredRental)
-        {
-            featuredRentals.push(rentals[i]);
-        }
-    }
+//     for(let i = 0; i < rentals.length; i++)
+//     {
+//         if (rentals[i].featuredRental)
+//         {
+//             featuredRentals.push(rentals[i]);
+//         }
+//     }
 
-    return featuredRentals;
-};
+//     return featuredRentals;
+// };
 
 
 //Returns all the rentals grouped by city & province together

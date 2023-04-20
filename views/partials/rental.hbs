@@ -5,4 +5,15 @@
     <p class="rental-desc">
         SLEEPS {{numSleeps}} {{numBedrooms}}BD {{numBathrooms}}BA ${{pricePerNight}}/night
     </p>
+    {{!-- <div> --}}
+
+        {{!-- {{#if user}} --}}
+                {{#if isCustomer}}
+
+                    <form id="create" method="GET" action="/cart/{{_id}}">
+
+                        <button>RENT</button>
+
+                    </form>
+                {{/if}}
 </div>
